@@ -50,7 +50,15 @@ nav.main-nav a {
     width: 100%;
 }
 
-.primary-slider  img{
+.primary-slider article {
+    display: none;
+}
+
+.primary-slider article.active {
+    display: block;
+}
+
+.primary-slider  img {
     width: 100%;
     opacity: 0.65;
     display: block;
