@@ -45,3 +45,37 @@ nav.main-nav a {
     padding: 10px 20px 10px 40px;
     display: inline-block;
 }
+
+.primary-slider {
+    width: 100%;
+}
+
+.primary-slider  img{
+    width: 100%;
+    opacity: 0.65;
+}
+
+.primary-slider header {
+    position: relative;
+    background-color: #000;
+}
+
+.primary-slider .slider-item-title {
+    position: absolute;
+    top: 40%;
+    left: 20%;
+    width: 65%;
+    min-width: 300px;
+    font-family: "Lato";
+}
+
+.primary-slider .slider-item-title a {
+    color: #fff;
+    font-family: 'Poppins';
+}
+
+.primary-slider  .slider-item-title h2 a{
+    font-weight: 700;
+    font-size: 33px;
+    line-height: 30px;
+}
