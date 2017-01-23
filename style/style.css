@@ -3,6 +3,10 @@
     padding: 0;
 }
 
+a {
+    text-decoration: none;
+}
+
 .title-bar {
     font-family: "Lato", sans-serif;
     color: #333;
@@ -13,7 +17,6 @@
 }
 
 .title-bar h1 a {
-    text-decoration: none;
     color: #333;
     line-height: 1.5;
     font-size: 40px;
@@ -23,4 +26,22 @@
 .title-bar .subtitle {
     font-size: 15px;
     line-height: 22px;
+}
+
+nav.main-nav {
+    width: 100%;
+    background-color: #ff3d2e;
+}
+
+nav.main-nav li {
+    display: inline-block;
+}
+
+nav.main-nav a {
+    color: #fff;
+    text-transform: uppercase;
+    font-family: "Poppins";
+    font-weight: 500;
+    padding: 10px 20px 10px 40px;
+    display: inline-block;
 }
