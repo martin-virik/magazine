@@ -53,6 +53,7 @@ nav.main-nav a {
 .primary-slider  img{
     width: 100%;
     opacity: 0.65;
+    display: block;
 }
 
 .primary-slider header {
@@ -67,6 +68,9 @@ nav.main-nav a {
     width: 65%;
     min-width: 300px;
     font-family: "Lato";
+    color: #ccc;
+    font-weight: 300;
+    font-size: 14px;
 }
 
 .primary-slider .slider-item-title a {
@@ -74,8 +78,25 @@ nav.main-nav a {
     font-family: 'Poppins';
 }
 
-.primary-slider  .slider-item-title h2 a{
+.primary-slider .slider-item-title h2 {
+    margin-top: 30px;
+}
+
+.primary-slider .slider-item-title h2 a {
     font-weight: 700;
     font-size: 33px;
     line-height: 30px;
+}
+
+.primary-slider .slider-item-title .category-title {
+    padding: 3px 8px;
+    margin-right: 14px;
+    background: #FF3D2E;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+}
+
+.primary-slider .slider-item-title .author {
+    color: #fff;
 }
