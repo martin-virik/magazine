@@ -134,6 +134,7 @@ nav.main-nav a {
 .category-headlines-container .category-headlines {
     width: 300px;
     min-width: 300px;
+    margin-left: 30px;
 }
 
 .category-headlines > header {
