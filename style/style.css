@@ -7,6 +7,11 @@
 
 a {
     text-decoration: none;
+    color: #333;
+}
+
+a:hover, a:focus, a:active {
+    color: #ff3d2e;
 }
 
 /* Title Bar */
@@ -25,7 +30,6 @@ a {
 }
 
 .title-bar h1 a {
-    color: #333;
     line-height: 1.5;
     font-size: 40px;
     font-weight: 700;
@@ -117,6 +121,10 @@ nav.main-nav a {
     font-size: 12px;
 }
 
+.primary-slider .slider-item-title .category-title:hover {
+    background: #000;
+}
+
 .primary-slider .slider-item-title .author {
     color: #fff;
 }
@@ -174,7 +182,6 @@ nav.main-nav a {
     margin-top: 23px;
     font-weight: 600;
     font-family: 'Poppins';
-    color: #333;
 }
 
 .category-headlines article:first-of-type h2 a {
