@@ -165,6 +165,7 @@ nav.main-nav a {
 
 .category-headlines article:first-of-type h2 {
     line-height: 30px;
+    margin: 15px 0;
 }
 
 .category-headlines article h2 a {
@@ -185,6 +186,18 @@ nav.main-nav a {
     margin-right: 15px;
 }
 .category-headlines article:first-of-type img {
-    float:none;
+    float: none;
     width: 100%;
+}
+
+.category-headlines article .published,
+.category-headlines article .comments {
+    font-family: "Lato";
+    color: #767676;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.category-headlines article .article-abstract {
+    margin-top: 15px;
 }
