@@ -174,7 +174,6 @@ nav.main-nav li:hover > ul {
 
 .category-headlines-container .category-headlines {
     width: 300px;
-    min-width: 300px;
     margin-left: 30px;
 }
 
@@ -241,4 +240,32 @@ nav.main-nav li:hover > ul {
 
 .category-headlines article .article-abstract {
     margin-top: 15px;
+}
+
+@media (min-width:1024px) {
+  .category-headlines-container .category-headlines {
+        width: 300px;
+        margin-left: 30px;
+    }
+}
+
+@media (max-width:1023px) {
+  .category-headlines-container .category-headlines {
+        width: 250px;
+        margin-left: 25px;
+    }
+}
+
+@media (max-width:845px) {
+  .category-headlines-container .category-headlines {
+        width: 200px;
+        margin-left: 15px;
+    }
+}
+
+@media (max-width:700px) {
+  .category-headlines-container .category-headlines {
+        width: 100%;
+        margin: 10px;
+    }
 }
