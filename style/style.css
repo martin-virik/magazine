@@ -47,8 +47,13 @@ nav.main-nav {
     background-color: #ff3d2e;
 }
 
-nav.main-nav li {
+nav.main-nav > ul > li {
     display: inline-block;
+}
+
+nav.main-nav > ul > li:hover {
+    display: inline-block;
+    background-color:red;
 }
 
 nav.main-nav a {
@@ -59,6 +64,34 @@ nav.main-nav a {
     padding: 10px 20px 10px 40px;
     display: inline-block;
 }
+
+nav.main-nav li {
+    position:relative;
+}
+nav.main-nav li > ul {
+    position:absolute;
+    display: none;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+
+nav.main-nav li > ul li{
+    list-style: none;
+    background-color: white;
+}
+
+nav.main-nav li > ul li a{
+    color: black;
+}
+
+nav.main-nav li > ul li:hover a{
+    color: red;
+}
+
+nav.main-nav li:hover > ul {
+    display: block;
+}
+
 
 /* Primary Slider */
 
