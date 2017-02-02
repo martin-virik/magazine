@@ -49,6 +49,10 @@ nav.main-nav {
     top: 0;
 }
 
+nav.main-nav ul{
+    margin-bottom: 0;
+}
+
 nav.main-nav > ul > li {
     display: inline-block;
 }
