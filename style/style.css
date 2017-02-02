@@ -45,6 +45,8 @@ a:hover, a:focus, a:active {
 nav.main-nav {
     width: 100%;
     background-color: #ff3d2e;
+    z-index: 2;
+    top: 0;
 }
 
 nav.main-nav > ul > li {
