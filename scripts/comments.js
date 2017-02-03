@@ -15,6 +15,7 @@
             if (app.validateEmail(data[1].value)) {
                 app.hideEmailError();
                 app.storeComment(data);
+                app.update();
             } else {
                 app.showError();
             }
@@ -38,7 +39,7 @@
         storeComment: function(data) {
             var comments = this.getComments();
 
-            comments.push({
+            comments.unshift({
                 name: data[0].value,
                 email: data[1].value,
                 comment: data[2].value,
@@ -52,7 +53,7 @@
             try {
                 comments = JSON.parse(localStorage.comments);
             } catch (error) {
-                console.error(error);
+                console.info('Nothing there yet');
                 comments = [];
             }
 
@@ -60,7 +61,20 @@
         },
 
         update: function() {
+           var commentsDiv =  $('#comments');
+           commentsDiv.html('');
            var comments = this.getComments();
+
+           var template = $('#comments-template > .panel');
+           comments.forEach(function(comment, index) {
+               var commentTemp = template.clone();
+               commentTemp.find('.name').text(comment.name);
+               commentTemp.find('.email').text(comment.email);
+               commentTemp.find('.comment').text(comment.comment);
+
+               commentsDiv.append(commentTemp);
+               commentTemp.removeClass('hidden');
+           });
         }
     }
 
