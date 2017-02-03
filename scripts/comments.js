@@ -13,27 +13,28 @@
             var data = $( this ).serializeArray();
 
             if (app.validateEmail(data[1].value)) {
-                app.hideEmailError();
+                app.hideEmailError(this);
                 app.storeComment(data);
                 app.update();
             } else {
-                app.showError();
+                app.showEmailError(this);
             }
 
             return false;
         },
 
         validateEmail: function(email) {
-            // check email
-            return true;
+            return email.match(/(.*)@(.*)\.(.*)/);
         },
 
-        showEmailError: function() {
-            
+        showEmailError: function(form) {
+            $(form).find('input[name="email"]').parents('.form-group').addClass('has-error');
+            $(form).find('.alert').removeClass('hidden');
         },
 
-        hideEmailError: function() {
-            
+        hideEmailError: function(form) {
+            $(form).find('input[name="email"]').parents('.form-group').removeClass('has-error');
+            $(form).find('.alert').addClass('hidden');
         },
 
         storeComment: function(data) {
