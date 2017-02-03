@@ -5,7 +5,12 @@
             console.log('jQuery ready!');
             this.update();
 
-            $('form#comments-form').on('submit', this.onSubmit)
+            $('form#comments-form').on('submit', this.onSubmit);
+
+            $('#file-button').on('click', function(e) {
+                e.preventDefault();
+                $('form input[name="file"]').trigger('click');
+            });
         },
 
         onSubmit: function(event) {
