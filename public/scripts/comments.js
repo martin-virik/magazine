@@ -19,8 +19,13 @@
 
             if (app.validateEmail(data[1].value)) {
                 app.hideEmailError(this);
-                app.storeComment(data);
-                app.update();
+                app.storeComment(data, function(res) {
+                    if (res) {
+                        app.update();
+                    } else {
+                        alert('Sorry, we were not able to save your comment');
+                    }
+                });
             } else {
                 app.showEmailError(this);
             }
@@ -42,45 +47,49 @@
             $(form).find('.alert').addClass('hidden');
         },
 
-        storeComment: function(data) {
-            var comments = this.getComments();
-
-            comments.unshift({
-                name: data[0].value,
-                email: data[1].value,
-                comment: data[2].value,
-            })
-
-            localStorage.comments = JSON.stringify(comments);
+        storeComment: function(data, cb) {
+            $.post('/api/comments', {
+                    name: data[0].value,
+                    email: data[1].value,
+                    comment: data[2].value,
+                }, function(res) {
+                    if (res.error) {
+                        console.error(res.error);
+                        cb(null);
+                    } else {
+                        cb(res);
+                    }
+            });
         },
 
-        getComments: function() {
-            var comments;
-            try {
-                comments = JSON.parse(localStorage.comments);
-            } catch (error) {
-                console.info('Nothing there yet');
-                comments = [];
-            }
-
-            return comments;
+        getComments: function(cb) { 
+            $.get('/api/comments', function(res) {
+                if (res.error) {
+                    console.error(res.error);
+                    cb([]);
+                } else {
+                    cb(res);
+                }
+            });
         },
 
         update: function() {
            var commentsDiv =  $('#comments');
            commentsDiv.html('');
-           var comments = this.getComments();
-
            var template = $('#comments-template > .panel');
-           comments.forEach(function(comment, index) {
-               var commentTemp = template.clone();
-               commentTemp.find('.name').text(comment.name);
-               commentTemp.find('.email').text(comment.email);
-               commentTemp.find('.comment').text(comment.comment);
 
-               commentsDiv.append(commentTemp);
-               commentTemp.removeClass('hidden');
+           this.getComments(function(comments) {
+                comments.forEach(function(comment, index) {
+                    var commentTemp = template.clone();
+                    commentTemp.find('.name').text(comment.name);
+                    commentTemp.find('.email').text(comment.email);
+                    commentTemp.find('.comment').text(comment.comment);
+
+                    commentsDiv.append(commentTemp);
+                    commentTemp.removeClass('hidden');
+                });
            });
+
         }
     }
 
