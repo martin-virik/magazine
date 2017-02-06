@@ -48,28 +48,56 @@
         },
 
         storeComment: function(data, cb) {
-            $.post('/api/comments', {
+            $('form#comments-form').LoadingOverlay('show');
+            $.ajax({
+                url: '/api/comments',
+                type: 'POST',
+                data:  {
                     name: data[0].value,
                     email: data[1].value,
                     comment: data[2].value,
-                }, function(res) {
-                    if (res.error) {
-                        console.error(res.error);
-                        cb(null);
-                    } else {
-                        cb(res);
-                    }
+                },
+                dataType: 'json'
+            }).done(function(res) {
+                if (res.error) {
+                    console.error(res.error);
+                    cb(null);
+                } else {
+                    cb(res);
+                }
+            }).fail(function( xhr, status, errorThrown ) {
+                alert( "Sorry, there was a problem!" );
+                console.log( "Error: " + errorThrown );
+                console.log( "Status: " + status );
+                console.dir( xhr );
+            })
+            // Code to run regardless of success or failure;
+            .always(function( xhr, status ) {
+                $('form#comments-form').LoadingOverlay('hide');
             });
         },
 
         getComments: function(cb) { 
-            $.get('/api/comments', function(res) {
+            $('form#comments-form').LoadingOverlay('show');
+            $.ajax({
+                url: '/api/comments',
+                type: 'GET',
+                dataType: 'json'
+            }).done(function(res) {
                 if (res.error) {
                     console.error(res.error);
                     cb([]);
                 } else {
                     cb(res);
                 }
+            }).fail(function( xhr, status, errorThrown ) {
+                alert( "Sorry, there was a problem!" );
+                console.log( "Error: " + errorThrown );
+                console.log( "Status: " + status );
+                console.dir( xhr );
+            })
+            .always(function( xhr, status ) {
+                $('form#comments-form').LoadingOverlay('hide');
             });
         },
 
@@ -78,6 +106,7 @@
            commentsDiv.html('');
            var template = $('#comments-template > .panel');
 
+           //var commments = this.getComments();
            this.getComments(function(comments) {
                 comments.forEach(function(comment, index) {
                     var commentTemp = template.clone();
