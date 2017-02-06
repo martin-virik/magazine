@@ -77,27 +77,26 @@
             });
         },
 
-        getComments: function(cb) { 
+        getComments: function() { 
             $('form#comments-form').LoadingOverlay('show');
-            $.ajax({
-                url: '/api/comments',
-                type: 'GET',
-                dataType: 'json'
-            }).done(function(res) {
-                if (res.error) {
-                    console.error(res.error);
-                    cb([]);
-                } else {
-                    cb(res);
-                }
-            }).fail(function( xhr, status, errorThrown ) {
-                alert( "Sorry, there was a problem!" );
-                console.log( "Error: " + errorThrown );
-                console.log( "Status: " + status );
-                console.dir( xhr );
-            })
-            .always(function( xhr, status ) {
-                $('form#comments-form').LoadingOverlay('hide');
+            return new Promise(function(resolve, reject) {
+                $.ajax({
+                    url: '/api/comments',
+                    type: 'GET',
+                    dataType: 'json'
+                }).done(function(res) {
+                    resolve(res);
+                }).fail(function( xhr, status, errorThrown ) {
+                    alert( "Sorry, there was a problem!" );
+                    console.log( "Error: " + errorThrown );
+                    console.log( "Status: " + status );
+                    console.dir( xhr );
+
+                    reject(errorThrown);
+                })
+                .always(function( xhr, status ) {
+                    $('form#comments-form').LoadingOverlay('hide');
+                });
             });
         },
 
@@ -107,7 +106,7 @@
            var template = $('#comments-template > .panel');
 
            //var commments = this.getComments();
-           this.getComments(function(comments) {
+           this.getComments().then(function(comments) {
                 comments.forEach(function(comment, index) {
                     var commentTemp = template.clone();
                     commentTemp.find('.name').text(comment.name);
